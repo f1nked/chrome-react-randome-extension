@@ -1,0 +1,35 @@
+.service-menu {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: #000000;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  transform: translateX(100%);
+  transition: transform 0.2s ease-in;
+}
+.service-menu.open {
+  transform: translateX(0);
+}
+
+.service-menu-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px;
+  gap: 22px;
+  position: relative;
+}
+
+.service-menu-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 1;
+}

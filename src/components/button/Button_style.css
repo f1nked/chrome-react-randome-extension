@@ -1,0 +1,76 @@
+.super-button {
+  cursor: pointer;
+  border-width: 0;
+  display: flex;
+  flex-direction: row;
+  transition: background-color 0.3s;
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+}
+
+.super-button.primary {
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  line-height: 16px;
+  color: #ffffff;
+  background-color: #000000;
+  width: 282px;
+  height: 48px;
+  border-radius: 20px;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.super-button.secondary {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 6px;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 12px;
+  letter-spacing: 0.04em;
+  color: #000000;
+  justify-content: center;
+  align-items: center;
+  padding: 11px;
+  background-color: #ffffff;
+}
+.super-button.list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 22px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  align-self: unset;
+  background: #000000;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+}
+
+.super-button.close {
+  background: #000000;
+  padding: 6px 6px;
+  align-items: center;
+}
+
+.super-button.primary:disabled {
+  background-color: #bdbdbd;
+  cursor: default;
+}
+
+.super-button.secondary:disabled {
+  color: #8b8b8b;
+  cursor: default;
+}
