@@ -1,5 +1,6 @@
 .App {
   background: #ffffff;
+  user-select: none;
 }
 .extension-content {
   font-family: "Roboto";

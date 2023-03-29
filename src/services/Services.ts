@@ -1,5 +1,6 @@
 import axios from "axios";
 
+//Vk
 export const getCheckUser = async (
   userID: number,
   token: string | null | undefined,
@@ -46,7 +47,7 @@ export const getCheckGroup = async (
     throw new Error(`getCheckGroup fail`);
   }
 };
-
+//Wiki
 export const getRandomWikiPage = async (controller: AbortController, language: string | null) => {
   try {
     const response = await axios.get(
@@ -64,5 +65,53 @@ export const getRandomWikiPage = async (controller: AbortController, language: s
     return response.data;
   } catch (error) {
     throw new Error(`getRandomWikiPage Fail`);
+  }
+};
+
+//last.fm
+export const getTrack = async (
+  searchString: string,
+  token: string | null | undefined,
+  controller: AbortController
+) => {
+  try {
+    const response = await axios.get(
+      `https://ws.audioscrobbler.com/2.0/?method=track.search&api_key=${token}&format=json&track=${searchString}&limit=100`,
+      {
+        signal: controller.signal,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Allow-Credentials": "true",
+          mode: "no-cors",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(`getTrack fail`);
+  }
+};
+export const getArtist = async (
+  searchString: string,
+  token: string | null | undefined,
+  controller: AbortController
+) => {
+  try {
+    const response = await axios.get(
+      `https://ws.audioscrobbler.com/2.0/?method=artist.search&api_key=${token}&format=json&artist=${searchString}&limit=100`,
+      {
+        signal: controller.signal,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "*",
+          "Access-Control-Allow-Credentials": "true",
+          mode: "no-cors",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(`getTrack fail`);
   }
 };

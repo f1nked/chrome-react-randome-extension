@@ -5,7 +5,8 @@ import { ServiceFactory, RequestStrategy } from "serviceStrategy";
 import { ReactComponent as RmLogo } from "icons/randome_logo.svg";
 import { ReactComponent as VkLogo } from "icons/vk_logo.svg";
 import { ReactComponent as WikiLogo } from "icons/wiki_logo.svg";
-import { DataType, ServiceItemsType, ServiceType, SubmenuItems, ServiceContext } from "types";
+import { ReactComponent as LastFmLogo } from "icons/last_fm_logo.svg";
+import { ServiceItemsType, ServiceType, SubmenuItems, ServiceContext } from "types";
 
 /// <reference types="chrome" />
 
@@ -53,6 +54,21 @@ function App() {
       adress: null,
       key: null,
     },
+    {
+      name: "last",
+      id: 2,
+      label: "last.fm",
+      logo: <LastFmLogo />,
+      submenu: {
+        items: [
+          { label: "Track page", value: "track" },
+          { label: "Artist page", value: "artist" },
+        ],
+        value: "track",
+      },
+      adress: null,
+      key: process.env.REACT_APP_LAST_API_KEY,
+    },
   ];
 
   useEffect(() => {
@@ -98,9 +114,7 @@ function App() {
   }
 
   const abortRequest = () => {
-    console.log("out");
     if (abortController) {
-      console.log("Inside");
       abortController.abort();
       isLoopingRef.current = false;
       if (intervalRef.current !== null) {
