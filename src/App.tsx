@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
-import { Button, RadioButton, ServiceMenu } from "components";
-import { ServiceFactory, RequestStrategy } from "serviceStrategy";
+import { Button, RadioButton, ServiceMenu, ServiceLogo } from "components";
+import { ServiceFactory, RequestStrategy } from "services/ServiceStrategy";
 import { ReactComponent as RmLogo } from "icons/randome_logo.svg";
-import { ReactComponent as VkLogo } from "icons/vk_logo.svg";
-import { ReactComponent as WikiLogo } from "icons/wiki_logo.svg";
-import { ReactComponent as LastFmLogo } from "icons/last_fm_logo.svg";
-import { ServiceItemsType, ServiceType, SubmenuItems, ServiceContext } from "types";
+import { ServiceType, SubmenuItems, ServiceContext } from "types";
+import { ServiceNames, ServiceList } from "services/ServiceData";
 
 /// <reference types="chrome" />
 
@@ -23,60 +21,14 @@ function App() {
   const isLoopingRef: React.MutableRefObject<boolean> = useRef(false);
   const intervalRef: React.MutableRefObject<NodeJS.Timeout | null> = useRef(null);
 
-  const serviceItems: ServiceItemsType = [
-    {
-      name: "vk",
-      id: 0,
-      label: "vk.com",
-      logo: <VkLogo />,
-      submenu: {
-        items: [
-          { label: "User page", value: "user" },
-          { label: "Group page", value: "group" },
-        ],
-        value: "user",
-      },
-      adress: "https://vk.com",
-      key: process.env.REACT_APP_VK_API_KEY,
-    },
-    {
-      name: "wiki",
-      id: 1,
-      label: "wikipedia.org",
-      logo: <WikiLogo />,
-      submenu: {
-        items: [
-          { label: "Russian page", value: "ru" },
-          { label: "English page", value: "en" },
-        ],
-        value: "ru",
-      },
-      adress: null,
-      key: null,
-    },
-    {
-      name: "last",
-      id: 2,
-      label: "last.fm",
-      logo: <LastFmLogo />,
-      submenu: {
-        items: [
-          { label: "Track page", value: "track" },
-          { label: "Artist page", value: "artist" },
-        ],
-        value: "track",
-      },
-      adress: null,
-      key: process.env.REACT_APP_LAST_API_KEY,
-    },
-  ];
-
   useEffect(() => {
     const name = localStorage.getItem("service");
     const submenuItem = localStorage.getItem("submenu_value");
-    const nameExists = serviceItems.some((item: { name: string }): boolean => item.name === name);
-    const itemService: ServiceType | undefined = serviceItems.find(
-      (item: { name: string }): boolean => item.name === name
+    const nameExists = ServiceList.some(
+      (item: { name: ServiceNames | null }): boolean => item.name === name
+    );
+    const itemService = ServiceList.find(
+      (item: { name: ServiceNames | null }): boolean => item.name === name
     );
     if (name && nameExists && itemService) {
       setSelectedService(itemService);
@@ -90,9 +42,9 @@ function App() {
         setRadioButtonValue(itemService.submenu.value);
       }
     } else {
-      localStorage.setItem("service", serviceItems[0].name);
-      setSelectedService(serviceItems[0]);
-      setRadioButtonValue(serviceItems[0].submenu.value);
+      localStorage.setItem("service", ServiceList[0].name);
+      setSelectedService(ServiceList[0]);
+      setRadioButtonValue(ServiceList[0].submenu.value);
     }
   }, []);
 
@@ -152,7 +104,7 @@ function App() {
           <div className="Header">
             <RmLogo />
             <ServiceMenu
-              data={serviceItems}
+              data={ServiceList}
               show={serviceMenuOpen}
               open={handleOpenServiceMenuButton}
               updateSelectedService={setSelectedService}
@@ -163,7 +115,9 @@ function App() {
           </div>
           <div className="service-container">
             <div className="main-container">
-              <div className="logo-container">{selectedService.logo}</div>
+              <div className="logo-container">
+                <ServiceLogo name={selectedService.name} />
+              </div>
               <div className="label-container">{selectedService.label}</div>
             </div>
             <div className="submenu-container">

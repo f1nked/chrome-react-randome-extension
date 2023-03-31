@@ -1,25 +1,29 @@
+import { ServiceNames } from "services/ServiceData";
+
 export type DataType = {
-  [key: string]: ServiceItemsType;
+  [key: string]: ServiceListType;
 };
 export type SubmenuItems = {
   label: string;
   value: string;
 }[];
 
+export type ServiceName = {
+  name: ServiceNames;
+};
+
 export type ServiceType = {
-  name: string;
   id: number;
   label: string;
-  logo: JSX.Element;
   submenu: {
     items: SubmenuItems;
     value: string;
   };
   adress: string | null;
   key: string | undefined | null;
-};
+} & ServiceName;
 
-export type ServiceItemsType = ServiceType[];
+export type ServiceListType = ServiceType[];
 
 export type ServiceMenuProps = {
   show: boolean;
@@ -41,4 +45,11 @@ export type ServiceContext = {
   intervalRef: React.MutableRefObject<NodeJS.Timeout | null>;
   adress: string | null;
   name: string;
+};
+
+export type ServiceStrategy = {
+  run(context: ServiceContext): void;
+};
+export type OptionMap = {
+  [key: string]: (context: ServiceContext) => void;
 };
