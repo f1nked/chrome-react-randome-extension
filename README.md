@@ -7,12 +7,13 @@ Web-service list:
   ✔️ vk.com
 
   ✔️ wikipedia.org
+  
+  ✔️ last.fm
 
   ⌛ youtube.com
 
   ⌛ twitter.com
 
-  ⌛ last.fm
 
 # Instalation 
 
