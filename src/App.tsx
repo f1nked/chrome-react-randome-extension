@@ -128,19 +128,19 @@ function App() {
                   label={item.label}
                   value={item.value}
                   checked={radioButtonValue === item.value}
-                  onChange={setRadioButtonValue}
+                  onChangeAction={setRadioButtonValue}
                 />
               ))}
             </div>
           </div>
           <div className="btn-container">
             <Button
-              type="primary"
+              variant="primary"
               label="RandoMe"
               onClick={handleClickRandoMe}
               disabled={loading}
             />
-            <Button type="secondary" label="Cancel" onClick={abortRequest} disabled={!loading} />
+            <Button variant="secondary" label="Cancel" onClick={abortRequest} disabled={!loading} />
           </div>
         </div>
       ) : null}

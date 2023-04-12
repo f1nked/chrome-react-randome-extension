@@ -1,18 +1,18 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import "./Button_style.css";
 import { ReactComponent as CloseIcon } from "icons/close_icon.svg";
 
-type ButtonProps = {
-  type: "primary" | "secondary" | "list" | "close";
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant: "primary" | "secondary" | "list" | "close";
   label: string;
-  onClick: () => void;
   disabled?: boolean;
-};
+}
 
-const Button: React.FC<ButtonProps> = ({ label, onClick, disabled, type }) => {
+const Button: React.FC<ButtonProps> = (props) => {
+  const { variant, label, disabled, ...restProps } = props;
   return (
-    <button onClick={onClick} className={`super-button ${type}`} disabled={disabled}>
-      {type === "close" ? <CloseIcon /> : <>{label}</>}
+    <button {...restProps} className={`super-button ${variant}`} disabled={disabled}>
+      {variant === "close" ? <CloseIcon /> : <>{label}</>}
     </button>
   );
 };

@@ -1,17 +1,18 @@
 import "./RadioButton_style.css";
 
-type RadioButtonProps = {
+interface RadioButtonProps {
   label: string;
   value: string;
   checked: boolean;
   disabled: boolean;
-  onChange: (value: string) => void;
-};
+  onChangeAction: (value: string) => void;
+}
 
-const RadioButton: React.FC<RadioButtonProps> = ({ label, value, checked, onChange, disabled }) => {
+const RadioButton: React.FC<RadioButtonProps> = (props) => {
+  const { label, value, onChangeAction, checked, disabled } = props;
   const handleChange = () => {
     localStorage.setItem("submenu_value", value);
-    onChange(value);
+    onChangeAction(value);
   };
 
   return (

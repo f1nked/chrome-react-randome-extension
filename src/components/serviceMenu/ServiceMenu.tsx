@@ -23,17 +23,22 @@ const ServiceMenu: React.FC<ServiceMenuProps> = ({
 
   return (
     <div>
-      <Button type="secondary" label="Choose a service" onClick={open} disabled={disabledButton} />
+      <Button
+        variant="secondary"
+        label="Choose a service"
+        onClick={open}
+        disabled={disabledButton}
+      />
       <div className={drawerClasses}>
         <div className="service-menu-body">
           <div className="Header">
-            <Button type="close" label="Close" onClick={close} />
+            <Button variant="close" label="Close" onClick={close} />
           </div>
           <div className="service-menu-list">
             {data.map((item: any) => (
               <Button
                 key={item.id}
-                type="list"
+                variant="list"
                 label={item.label}
                 onClick={() => handleS(item, item.name)}
               />
