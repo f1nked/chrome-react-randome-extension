@@ -10,7 +10,7 @@ Web-service list:
   
   ✔️ last.fm
 
-  ⌛ youtube.com
+  ✔️ youtube.com
 
   ⌛ twitter.com
 
