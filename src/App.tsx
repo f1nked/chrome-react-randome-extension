@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
-import { Button, RadioButton, ServiceMenu, ServiceLogo } from "components";
+import { Button, ServiceMenu, ServiceLogo, Options } from "components";
 import { ServiceFactory, RequestStrategy } from "services/ServiceStrategy";
 import { ReactComponent as RmLogo } from "icons/randome_logo.svg";
 import { ServiceType, SubmenuItems, ServiceContext } from "types";
@@ -120,18 +120,12 @@ function App() {
               </div>
               <div className="label-container">{selectedService.label}</div>
             </div>
-            <div className="submenu-container">
-              {selectedService.submenu.items.map((item: SubmenuItems[number], i: number) => (
-                <RadioButton
-                  key={i}
-                  disabled={loading}
-                  label={item.label}
-                  value={item.value}
-                  checked={radioButtonValue === item.value}
-                  onChangeAction={setRadioButtonValue}
-                />
-              ))}
-            </div>
+            <Options
+              options={selectedService.submenu.items}
+              disabled={loading}
+              value={radioButtonValue}
+              setValue={setRadioButtonValue}
+            />
           </div>
           <div className="btn-container">
             <Button

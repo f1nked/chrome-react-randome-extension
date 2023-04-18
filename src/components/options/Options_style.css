@@ -1,0 +1,11 @@
+.submenu-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 10px;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+}
