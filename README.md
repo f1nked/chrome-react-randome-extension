@@ -1,5 +1,7 @@
 # RandoMe Chrome Extension
 
+ ![cover](https://user-images.githubusercontent.com/23584686/234703217-1815327a-3a4a-456f-b97c-40a1563e8971.jpg)
+
 A small extension for random web surfing.
 
 Web-service list:
